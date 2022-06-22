@@ -1,0 +1,49 @@
+###
+POST http://localhost:8080/region/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMTM4NDksImV4cCI6MTY1NTMwMDI0OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.j6-GGaV0kH-Y6riqZ_N6qd7oQ6cN24agJuKAtMhcu7A
+
+{
+  "key" : "tashkent_region",
+  "nameUz" : "Тошкент вилояти",
+  "nameRu" : "Ташкент область",
+  "nameEn":"Tashkent region"
+}
+
+
+
+###
+GET http://localhost:8080/region/list
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/region/listAdmin
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ4NDA1NzYsImV4cCI6MTY1NDg0NDE3NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiQURNSU4ifQ._GdF9Y_4hzJvkil496bJ2_1OWF9ssAuDh5P2_KxnYaw
+
+###
+PUT http://localhost:8080/region/update/9
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ4NDA1NzYsImV4cCI6MTY1NDg0NDE3NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiQURNSU4ifQ._GdF9Y_4hzJvkil496bJ2_1OWF9ssAuDh5P2_KxnYaw
+
+{
+  "key" : "bukhara",
+  "nameUz" : "Бухоро",
+  "nameRu" : "Бухара",
+  "nameEn":"bukhara"
+}
+
+###
+PUT http://localhost:8080/region/delete/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ4NDA1NzYsImV4cCI6MTY1NDg0NDE3NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiQURNSU4ifQ._GdF9Y_4hzJvkil496bJ2_1OWF9ssAuDh5P2_KxnYaw
+
+###
+
+GET http://localhost:8080/region/public
+Accept-Language: ru
+
+
+
+

@@ -1,0 +1,51 @@
+###
+POST http://localhost:8080/types/adm/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIbnhdfjmdOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+{
+  "key" : "ernjlkwnkls",
+  "nameUz" : "Маколалар",
+  "nameRu" : "Статьи",
+  "nameEn":"Articles"
+}
+
+###
+
+
+
+
+###
+GET http://localhost:8080/articleType/list
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+###
+GET http://localhost:8080/articleType/listAdmin
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+###
+PUT http://localhost:8080/articleType/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+{
+  "key" : "bukhara",
+  "nameUz" : "Бухоро",
+  "nameRu" : "Бухара",
+  "nameEn":"bukhara"
+}
+
+###
+PUT http://localhost:8080/articleType/delete/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+
+###
+
+GET http://localhost:8080/type/pagination?page=1&size=3
+
+###
+
+GET http://localhost:8080/types/public/lang

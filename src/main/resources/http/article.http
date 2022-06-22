@@ -1,0 +1,75 @@
+POST http://localhost:8080/article/adm/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU4MTQwNzMsImV4cCI6MTY1NTkwMDQ3MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiTU9ERVJBVE9SIn0.FqKBuO8PSHN-8maE2_KC_th9V7rq8fxVa40I1zsd0gc
+
+
+{
+  "title": "asus",
+  "content": "aaa",
+  "description": "asus tuf gaming f17",
+  "regionId":1,
+  "categoryId": 1,
+  "typesList": [1],
+  "tagList": ["#kasallik","#yangiKasallik","#IT","ASUS","TUF"]
+}
+
+###
+GET http://localhost:8080/article/getList
+
+###
+POST http://localhost:8080/article/update/eeeski
+Content-Type: application/json
+
+{
+  "description": "vanihoyat",
+  "title": "Oxirgi title",
+  "content": "Yangi title",
+  "regionId": 1,
+  "categoryId": 1,
+  "typesList": [2],
+  "tagList": ["#oxirgiTag","#Java"]
+}
+
+###
+GET http://localhost:8080/article/getListByTypeKey/actual_news
+
+
+###
+
+PUT http://localhost:8080/article/adm/status/8a8a83788167bc0e018167bed2620000
+
+###
+
+GET http://localhost:8080/article/getListByCategoryKey/jahon
+
+###
+GET http://localhost:8080/article/getCategoryKey/jahon
+
+###
+
+GET http://localhost:8080/article/type4/actual_news
+
+###
+
+GET http://localhost:8080/article/getList/8a8a83788167bc0e018167bed2620000
+
+###
+
+GET http://localhost:8080/article/mostRead
+
+###
+
+GET http://localhost:8080/article/byRegionKey/tashkent_city?page=0&size=2
+
+###
+
+GET http://localhost:8080/article/byTagName/kasallik
+
+###
+
+POST http://localhost:8080/article/increaseViewCount/8a8a83788167bc0e018167bed2620000
+
+
+###
+
+GET http://localhost:8080/article/regionAndType/actual_news/tashkent_city

@@ -1,0 +1,75 @@
+###
+POST http://localhost:8080/auth/create
+Content-Type: application/json
+Authorization:
+
+{
+  "name": "Aziz",
+  "surName": "Hurramov",
+  "email": "majnun@gmail.com",
+  "password": "123456789"
+}
+
+
+
+###MODERATOR
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "otabek@mail.ru",
+  "password": "1234"
+}
+
+###USER
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "qobil@gmail.com",
+  "password": "1111"
+}
+
+###ADMIN
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+
+{
+  "email": "humoyun@gmail.com",
+  "password": "1111"
+}
+
+###PUBLISHER
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+
+{
+  "email": "bahodir@gmail.com",
+  "password": "1111"
+}
+
+###//admin update profile
+PUT http://localhost:8080/profile/update/{{id}}
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+{
+  "name": "jalol",
+  "surName": "karshiboyev",
+  "email": "kkk.com007",
+  "phone": "998945779598"
+}
+
+###//admin delete profile
+PUT http://localhost:8080/profile/delete/id
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+
+###
+GET http://localhost:8080/profile/pagination
+Content-Type: application/json
+Authorization:
+

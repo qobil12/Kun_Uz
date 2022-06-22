@@ -1,0 +1,30 @@
+###
+POST http://localhost:8080/profile/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM
+
+{
+  "name": "Laziz",
+  "surName" :"Alisherov",
+  "email" : "mazgi@gmail.com",
+  "password" : "20114567"
+}
+
+
+
+###
+PUT http://localhost:8080/profile/update
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTQ5MzAxNjIsImV4cCI6MTY1NDkzMzc2MiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.GG_i8XudgzNpAV9_BLGIwcw8eCNETxGK7kWoE6-l5YE
+
+{
+  "name": "jalol007",
+  "surName" :"karshiboyev007",
+  "email" : "kkk.com007",
+  "phone" : "998945779598"
+}
+
+###
+
+GET http://localhost:8080/profile/pagination?page=0&size=2
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUyMDk4MDksImV4cCI6MTY1NTIxMzQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.X3Yo3oCt1oFliYff377WVJ1RPOgFY-sbJ-aV_oD3LsM

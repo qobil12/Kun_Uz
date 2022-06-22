@@ -1,0 +1,12 @@
+POST http://localhost:8080/comment/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUxMzQ3NjAsImV4cCI6MTY1NTEzODM2MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiQURNSU4ifQ.l1cBCPavsK26ZR-JGmnOJQz3P6IMed3Z2SM5OvMyCuk
+
+{
+  "content": "vachachvachaaaaaaach",
+  "articleId": "402880e581597c3e0181597d19e50000",
+  "profileId": 1
+}
+
+###
+DELETE http://localhost:8080/comment/delete/1

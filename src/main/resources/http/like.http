@@ -1,0 +1,7 @@
+POST http://localhost:8080/article_like/like
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTUzMDMwMDksImV4cCI6MTY1NTM4OTQwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjozLCJyb2xlIjoiUFVCTElTSEVSIn0.nCSW1HdHZiAA-Eekc_FgbM1Diny_9YdreFJ76rAbbSw
+
+{
+  "articleId":"8a8a83468167c96e018167cdcf2e0000"
+}
