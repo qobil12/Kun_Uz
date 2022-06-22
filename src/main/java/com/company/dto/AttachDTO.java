@@ -5,11 +5,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-// PROJECT NAME Kun_Uz
-// TIME 17:02
-// MONTH 06
-// DAY 20
-
 @Getter
 @Setter
 @ToString
@@ -18,8 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AttachDTO {
     private String uuid;
-    private String name;
-    private String type;
+    private String originalName;
+    private String extension;
+    private Long size;
     private String path;
     private LocalDateTime createdDate;
+    private String url;
 }

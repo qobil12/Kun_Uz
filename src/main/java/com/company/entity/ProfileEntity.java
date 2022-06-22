@@ -29,6 +29,9 @@ public class ProfileEntity {
     private String email;
 
     @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
 

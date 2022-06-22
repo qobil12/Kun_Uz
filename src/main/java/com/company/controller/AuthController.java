@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.dto.AuthDTO;
 import com.company.dto.ProfileDTO;
 import com.company.dto.RegistrationDTO;
+import com.company.dto.VerificationDTO;
 import com.company.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody RegistrationDTO dto) {
-        ProfileDTO response = authService.registration(dto);
+        String response = authService.registration(dto);
         return ResponseEntity.ok().body(response);
     }
 
@@ -29,6 +30,12 @@ public class AuthController {
     public ResponseEntity<ProfileDTO> login(@RequestBody AuthDTO dto) {
         ProfileDTO profileDto = authService.login(dto);
         return ResponseEntity.ok(profileDto);
+    }
+
+    @PostMapping("/verification")
+    public ResponseEntity<String> login(@RequestBody VerificationDTO dto) {
+        String response = authService.verification(dto);
+        return ResponseEntity.ok(response);
     }
 
 

@@ -2,13 +2,15 @@ POST http://localhost:8080/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="videoplayback.mp4"
+Content-Disposition: form-data; name="file"; filename="zari.jpg"
 
-< C:\Users\User\Downloads\videoplayback.mp4
+< C:\Users\User\Downloads\zari.jpg
 
 
 ###
 GET http://localhost:8080/attach/open_general/8a8a86b7818658c10181865928500000
 ###
 DELETE http://localhost:8080/attach/delete/8a8a86b7818694e501818695917c0000
-
+###
+GET http://localhost:8080/attach/download/8a8a8493818b160601818b1f0efc0000
+###

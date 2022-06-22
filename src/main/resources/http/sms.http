@@ -1,0 +1,8 @@
+POST http://localhost:8080/sms/sendSms
+Content-Type: application/json
+
+{
+  "key": "",
+  "phone": "998337806712",
+  "message": ""
+}

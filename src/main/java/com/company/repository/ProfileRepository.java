@@ -1,6 +1,7 @@
 package com.company.repository;
 
 import com.company.entity.ProfileEntity;
+import com.company.enums.ProfileStatus;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -12,6 +13,8 @@ public interface ProfileRepository extends PagingAndSortingRepository<ProfileEnt
     List<ProfileEntity> findAllByVisible(Boolean b);
 
     Optional<ProfileEntity> findByEmail(String email);
+
+    Optional<ProfileEntity> updateStatusByPhone(String phone, ProfileStatus status);
 
 
 }
