@@ -4,6 +4,7 @@ import com.company.dto.AuthDTO;
 import com.company.dto.ProfileDTO;
 import com.company.dto.RegistrationDTO;
 import com.company.dto.VerificationDTO;
+import com.company.entity.AttachEntity;
 import com.company.entity.ProfileEntity;
 import com.company.entity.SmsEntity;
 import com.company.enums.ProfileRole;
@@ -22,10 +23,14 @@ import java.util.Optional;
 public class AuthService {
     @Autowired
     private ProfileRepository profileRepository;
-    @Autowired
-    private SmsService smsService;
+//    @Autowired
+//    private SmsService smsService;
     @Autowired
     private SmsRepository smsRepository;
+    @Autowired
+    private AttachService attachService;
+    @Autowired
+    private MailService mailService;
 
     public ProfileDTO login(AuthDTO authDTO) {
         Optional<ProfileEntity> optional = profileRepository.findByEmail(authDTO.getEmail());
@@ -63,16 +68,24 @@ public class AuthService {
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.USER);
         entity.setPhone(dto.getPhone());
+        AttachEntity attachEntity = attachService.get(dto.getPhotoId());
+        entity.setPhoto(attachEntity);
+
         profileRepository.save(entity);
 
-        smsService.sendRegistrationSms(dto.getPhone());
+
+
+        // smsService.sendRegistrationSms(dto.getPhone());
+
 //        ProfileDTO responseDTO = new ProfileDTO();
 //        responseDTO.setName(dto.getName());
 //        responseDTO.setSurName(dto.getSurname());
 //        responseDTO.setEmail(dto.getEmail());
 //        responseDTO.setJwt(JwtUtil.encode(entity.getId(), entity.getRole()));
+//
+        mailService.sendRegistrationEmail(entity.getEmail(), entity.getId());
 
-        return "Message was send";
+        return "sms was send";
     }
 
     public String verification(VerificationDTO dto) {
@@ -94,4 +107,19 @@ public class AuthService {
         profileRepository.updateStatusByPhone(dto.getPhone(), ProfileStatus.ACTIVE);
         return "Verification Done";
     }
+
+    public String emailVerification(Integer id) {
+        Optional<ProfileEntity> optional = profileRepository.findById(id);
+        if (optional.isEmpty()) {
+            return "<h1>User Not Found</h1>";
+        }
+
+        ProfileEntity profile = optional.get();
+        profile.setStatus(ProfileStatus.ACTIVE);
+        profileRepository.save(profile);
+        return "<h1 style='align-text:center'>Success. Tabriklaymiz.</h1>";
+    }
+
+
 }
+

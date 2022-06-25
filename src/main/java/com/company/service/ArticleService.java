@@ -1,8 +1,12 @@
 package com.company.service;
 
+import com.company.dto.ArticleFilterDTO;
+import com.company.dto.article.AttachUpdateDTO;
 import com.company.enums.Language;
+import com.company.exps.ItemNotFoundEseption;
 import com.company.mapper.ArticleShortInfo;
 import com.company.repository.ArticleRepository;
+import com.company.repository.custome.CustomeArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.company.dto.CategoryDTO;
@@ -20,10 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-// PROJECT NAME Kun_Uz
-// TIME 18:40
-// MONTH 06
-// DAY 16
 @Service
 public class ArticleService {
     @Autowired
@@ -36,6 +36,12 @@ public class ArticleService {
     private ArticleTypeService articleTypeService;
     @Autowired
     private ArticleTagService articleTagService;
+    @Autowired
+    private AttachService attachService;
+    @Autowired
+    private CustomeArticleRepository customeArticleRepository;
+
+
 
 
     public ArticleCreateDTO create(ArticleCreateDTO dto, Integer profileId) {
@@ -54,6 +60,7 @@ public class ArticleService {
         moderator.setId(profileId);
         entity.setModerator(moderator);
         entity.setStatus(ArticleStatus.NOT_PUBLISHED);
+        entity.setPhoto(attachService.get(dto.getImageId()));
 
         articleRepository.save(entity);
 
@@ -99,6 +106,7 @@ public class ArticleService {
         return dto;
     }
 
+
     public ArticleDTO toDTO(ArticleEntity entity) {
         ArticleDTO dto = new ArticleDTO();
         dto.setUuid(entity.getId());
@@ -127,6 +135,22 @@ public class ArticleService {
         ArticleEntity entity = article.get();
         entity.setVisible(false);
         articleRepository.save(entity);
+    }
+
+
+    public void updateArticleImage(AttachUpdateDTO dto, String articleId){
+        AttachEntity newAttachEntity = attachService.get(dto.getNewId());
+        AttachEntity oldAttachEntity = attachService.get(dto.getOldId());
+
+        Optional<ArticleEntity> optional = articleRepository.existsByPhotoId(articleId, oldAttachEntity.getId());
+        if(optional.isEmpty()){
+            throw new ItemNotFoundEseption("Bu rasm bu articlega tegishli emas");
+        }
+        ArticleEntity article = optional.get();
+
+        article.setPhoto(newAttachEntity);
+        articleRepository.save(article);
+        attachService.delete(oldAttachEntity.getId());
     }
 
     public String update(String id, ArticleCreateDTO dto) {
@@ -340,6 +364,12 @@ public class ArticleService {
         }
     }
 
+
+    public List<ArticleDTO> filter(ArticleFilterDTO dto){
+        customeArticleRepository.filter(dto);
+
+        return null;
+    }
 
     public List<ArticleDTO> getCategoryByPage(String key) {
         Pageable page = PageRequest.of(0, 5);

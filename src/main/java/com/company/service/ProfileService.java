@@ -1,13 +1,11 @@
 package com.company.service;
 
 import com.company.dto.ProfileDTO;
+import com.company.entity.AttachEntity;
 import com.company.entity.ProfileEntity;
 import com.company.enums.ProfileRole;
 import com.company.enums.ProfileStatus;
-import com.company.exps.AlreadyExist;
-import com.company.exps.AlreadyExistPhone;
-import com.company.exps.BadRequestException;
-import com.company.exps.ItemNotFoundException;
+import com.company.exps.*;
 import com.company.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -21,6 +19,8 @@ import java.util.Optional;
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private AttachService attachService;
 
     public ProfileDTO create(ProfileDTO profileDto) {
 
@@ -42,6 +42,8 @@ public class ProfileService {
         profile.setRole(ProfileRole.USER);
         profile.setPassword(profileDto.getPassword());
         profile.setStatus(ProfileStatus.ACTIVE);
+        AttachEntity attachEntity = attachService.get(profileDto.getImageId());
+        profile.setPhoto(attachEntity);
 
         profileRepository.save(profile);
 
@@ -89,7 +91,29 @@ public class ProfileService {
         entity.setEmail(dto.getEmail());
         profileRepository.save(entity);
 
+
     }
+
+    public void updateImageProfile(String id, Integer profileId) {
+
+        AttachEntity attach = attachService.get(id);
+
+        ProfileEntity profile = get(profileId);
+
+        if(!profileRepository.existsByPhotoId(profile.getId(),attach.getId())){
+            throw new ItemNotFoundEseption("Profile da bunday id li attach yo'q");
+        }
+
+        profileRepository.changeProfileImage(attach.getId(), profile.getId());
+        attachService.delete(id);
+
+        ProfileEntity entity = get(profileId);
+        AttachEntity attach1 = attachService.get(id);
+        entity.setPhoto(attach1);
+    }
+
+
+
 
 
     public void delete(Integer id) {
@@ -124,7 +148,7 @@ public class ProfileService {
 
     public ProfileEntity get(Integer id) {
         ProfileEntity profileEntity = profileRepository.findById(id).orElseThrow(() -> {
-            throw new ItemNotFoundException("Region not found");
+            throw new ItemNotFoundException("Profile not found");
         });
         return profileEntity;
     }

@@ -7,10 +7,7 @@ import com.company.dto.VerificationDTO;
 import com.company.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,6 +32,12 @@ public class AuthController {
     @PostMapping("/verification")
     public ResponseEntity<String> login(@RequestBody VerificationDTO dto) {
         String response = authService.verification(dto);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/email/verification/{id}")
+    public ResponseEntity<String> login(@PathVariable("id") Integer id) {
+        String response = authService.emailVerification(id);
         return ResponseEntity.ok(response);
     }
 

@@ -68,6 +68,7 @@ public class AttachService {
 
             AttachDTO dto = new AttachDTO();
             dto.setUrl(serverUrl+"/attach/open/"+entity.getId());
+            dto.setUuid(entity.getId());
             //dto.setDownloadUrl(serverUrl+"/attach/download/"+entity.getId());
 
             return dto;
@@ -76,6 +77,10 @@ public class AttachService {
         }
         return null;
     }
+
+//    public void updateImage(){
+//
+//    }
 
     public byte[] loadImage(String id) {
         byte[] imageInByte;
@@ -176,7 +181,7 @@ public class AttachService {
         // 2022/06/20/f978a682-a357-4eaf-ac18-ec9482a4e58b.jpg
     }
 
-    private AttachEntity get(String id) {
+    public AttachEntity get(String id) {
         return attachRepository.findById(id).orElseThrow(() -> {
             throw new ItemNotFoundException("Attach Not Found");
         });

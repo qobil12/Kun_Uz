@@ -51,6 +51,10 @@ public class ProfileEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "moderator")
     private List<ArticleEntity> articleList;
 
+    @JoinColumn(name = "photo_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private AttachEntity photo;
+
     public ProfileEntity() {
     }
 

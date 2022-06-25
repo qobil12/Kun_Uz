@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class KunUzApplication {
 
-	@Autowired
-	private ProfileService service;
+	/*@Autowired
+	private ProfileService service;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(KunUzApplication.class, args);

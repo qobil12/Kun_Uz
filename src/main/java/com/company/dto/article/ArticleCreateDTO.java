@@ -17,5 +17,6 @@ public class ArticleCreateDTO {
     private List<Integer> typesList;
     private List<String> tagList;
     private ArticleStatus status;
+    private String imageId;
 
 }

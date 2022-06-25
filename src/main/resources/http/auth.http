@@ -5,10 +5,11 @@ Authorization:
 
 {
   "phone": "998337806712",
-  "name": "Qobil",
-  "surname": "Odilov",
-  "email": "odilov@gmail.com",
-  "password": "1111"
+  "name": "Bahodir",
+  "surname": "Hurramov",
+  "email": "bahodirmufid@gmail.com",
+  "password": "1111",
+  "photoId" : "fc2f7ce8-6c9c-4439-bb68-de9429b3ef3d"
 }
 
 
@@ -18,8 +19,8 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "email": "otabek@mail.ru",
-  "password": "1234"
+  "email": "bahodir@gmail.com",
+  "password": "1111"
 }
 
 ###USER
@@ -37,7 +38,7 @@ Content-Type: application/json
 
 
 {
-  "email": "humoyun@gmail.com",
+  "email": "qobil@gmail.com",
   "password": "1111"
 }
 

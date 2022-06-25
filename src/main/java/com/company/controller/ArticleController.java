@@ -1,9 +1,11 @@
 package com.company.controller;
 
 
+import com.company.dto.ArticleFilterDTO;
 import com.company.dto.article.ArticleCreateDTO;
 import com.company.dto.article.ArticleDTO;
 import com.company.dto.article.ArticleRequestDTO;
+import com.company.dto.article.AttachUpdateDTO;
 import com.company.enums.Language;
 import com.company.enums.ProfileRole;
 import com.company.service.ArticleService;
@@ -167,6 +169,20 @@ public class ArticleController {
     public ResponseEntity<?> getArticleList() {
         List<ArticleDTO> list = articleService.getArticles();
         return ResponseEntity.ok().body(list);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<ArticleDTO>> filter(@RequestBody ArticleFilterDTO dto) {
+        List<ArticleDTO> response = articleService.filter(dto);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping("/update2/{id}")
+    private ResponseEntity<?> updateImage(@PathVariable("id") String id,
+                                          @RequestBody AttachUpdateDTO dto){
+
+        articleService.updateArticleImage(dto,id);
+        return ResponseEntity.ok().body("Successfully updated2");
     }
 
 

@@ -77,6 +77,11 @@ public class ArticleEntity {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "article")
     private List<CommentEntity> commentList;
 
+    @JoinColumn(name = "photo_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private AttachEntity photo;
+
+
 
     public ArticleEntity() {
     }

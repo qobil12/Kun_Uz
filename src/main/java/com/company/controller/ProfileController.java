@@ -54,6 +54,14 @@ public class ProfileController {
         return ResponseEntity.ok().body("Successfully updated");
     }
 
+    @PutMapping("/update2/{id}")
+    private ResponseEntity<?> updateImage(@PathVariable("id") String id,
+                                          HttpServletRequest request){
+        Integer profileId = HttpHeaderUtil.getId(request);
+        profileService.updateImageProfile(id, profileId);
+        return ResponseEntity.ok().body("Successfully updated2");
+    }
+
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<?> delete(@PathVariable("id") Integer id,
                                      HttpServletRequest request) {

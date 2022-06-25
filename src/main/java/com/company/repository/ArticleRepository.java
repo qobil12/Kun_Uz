@@ -22,6 +22,7 @@ public interface ArticleRepository extends PagingAndSortingRepository<ArticleEnt
     Iterable<ArticleEntity> findAllByVisible(boolean visible);
 
     Optional<ArticleEntity> findById(String id);
+
     Optional<ArticleEntity> findByIdAndVisibleTrue(String id);
 
 
@@ -114,10 +115,9 @@ public interface ArticleRepository extends PagingAndSortingRepository<ArticleEnt
             "inner join region as r on r.id = art.region_id " +
             "where r.key=:rKey and t.key =:tKey " +
             "and art.status='PUBLISHED' and art.visible=true " +
-            "order by art.publish_date limit 5",nativeQuery = true)
+            "order by art.publish_date limit 5", nativeQuery = true)
     List<ArticleShortInfo> getLast5ByTypesAndRegionKey(@Param("tKey") String typesKey,
                                                        @Param("rKey") String regionKey);
-
 
 
     @Query(value = "select art.id as id, art.title as title, art.description as description, art.publish_date as publishDate " +
@@ -132,7 +132,6 @@ public interface ArticleRepository extends PagingAndSortingRepository<ArticleEnt
                                                 Pageable pageable);
 
 
-
     @Query(value = "SELECT art.id as id, art.title as title, art.description as description, art.publish_date as publishDate " +
             " FROM article_tag as a " +
             " inner join article as art on art.id = a.article_id " +
@@ -143,9 +142,16 @@ public interface ArticleRepository extends PagingAndSortingRepository<ArticleEnt
             nativeQuery = true)
     List<ArticleShortInfo> get5ArticlesByTagName(@Param("name") String key);
 
-@Query("update ArticleEntity set viewCount = viewCount+1 where id=:id")
+    @Query("update ArticleEntity set viewCount = viewCount+1 where id=:id")
     ArticleEntity increaseViewCountId(@Param("id") String id);
 
+    @Query("from ArticleEntity a where a.id=?1 and a.photo.id=?2")
+    Optional<ArticleEntity> existsByPhotoId(String articleId, String photoId);
+
+//    @Transactional
+//    @Modifying
+//    @Query("update ArticleEntity a set a.photo.id = :photo where p.id=:id")
+//    void changeProfileImage(@Param("photo") String photoId, @Param("id") Integer id);
 
 
 }
