@@ -1,16 +1,17 @@
 POST http://localhost:8080/article/adm/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU4MTQwNzMsImV4cCI6MTY1NTkwMDQ3MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiTU9ERVJBVE9SIn0.FqKBuO8PSHN-8maE2_KC_th9V7rq8fxVa40I1zsd0gc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYzMzA4MTYsImV4cCI6MTY1NjQxNzIxNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxMSwicm9sZSI6Ik1PREVSQVRPUiJ9.uovcuzE_CZ-EHmZdJpXy4turaxGc6KtuLLmM0bYvj9E
 
 
 {
-  "title": "asus",
+
   "content": "aaa",
   "description": "asus tuf gaming f17",
   "regionId":1,
   "categoryId": 1,
   "typesList": [1],
-  "tagList": ["#kasallik","#yangiKasallik","#IT","ASUS","TUF"]
+  "tagList": ["#kasallik","#yangiKasallik","#IT","ASUS","TUF"],
+  "imageId":"d4eebc18-b4bb-4b47-b9b2-778268100fba"
 }
 
 ###

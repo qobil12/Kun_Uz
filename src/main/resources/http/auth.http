@@ -1,16 +1,20 @@
 ###
 POST http://localhost:8080/auth/registration
 Content-Type: application/json
-Authorization:
 
 {
   "phone": "998337806712",
   "name": "Bahodir",
-  "surname": "Hurramov",
+  "surname": "Xurramov",
   "email": "bahodirmufid@gmail.com",
   "password": "1111",
   "photoId" : "fc2f7ce8-6c9c-4439-bb68-de9429b3ef3d"
 }
+
+###
+GET http://localhost:8080/auth/resend/eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTg0NTYsImV4cCI6MTY1NjI0NDg1NiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxMX0.geh5lvhXJK5cR4lCFlQrdvGtqnNEVa55F8CZZGT0l_I
+Content-Type: application/json
+
 
 
 
@@ -19,7 +23,7 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "email": "bahodir@gmail.com",
+  "email": "bahodirmufid@gmail.com",
   "password": "1111"
 }
 

@@ -1,6 +1,8 @@
 package com.company.service;
 
 
+import com.company.dto.EmailRequestDTO;
+import com.company.entity.EmailHistoryEntity;
 import com.company.repository.MailHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +33,7 @@ public class MailService {
         builder.append("<b>Mazgi</b>");
         builder.append("<p> <a href='http://localhost:8081/attach/open/123'>Link verification</a> </p>");
         sendEmail(toAccount, "Registration", builder.toString());
+
     }
 
     private void sendEmail(String toAccount, String subject, String text) {
@@ -42,10 +45,32 @@ public class MailService {
             helper.setSubject(subject);
             helper.setText(text, true);
             javaMailSender.send(msg);
+            EmailHistoryEntity entity=new EmailHistoryEntity();
+            entity.setEmail(toAccount);
+
+            emailHistoryRepository.save(entity);
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public EmailRequestDTO reSendEmail(String toAccount,Integer id){
+
+        Long allByEmail = emailHistoryRepository.countResend(toAccount);
+
+        EmailRequestDTO dto=new EmailRequestDTO();
+
+        if(allByEmail>=4){
+            dto.setStatus(-1);
+            dto.setMessage("4 martadan ko'p resend bo'ldi");
+            return dto;
+        }
+
+        sendRegistrationEmail(toAccount,id);
+        dto.setMessage("Succesfully");
+        dto.setStatus(1);
+        return dto;
     }
 
     private void sendSimpleEmail(String toAccount, String subject, String text) {

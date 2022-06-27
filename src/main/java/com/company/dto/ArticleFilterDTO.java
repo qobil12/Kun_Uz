@@ -11,6 +11,7 @@ import lombok.Setter;
 public class ArticleFilterDTO {
     private String id;
     private String title;
+    private String description;
     private Integer regionId;
     private Integer categoryId;
 

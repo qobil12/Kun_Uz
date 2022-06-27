@@ -1,12 +1,17 @@
 package com.company.service;
 
+import com.company.dto.ArticleFilterDTO;
 import com.company.dto.ProfileDTO;
+import com.company.dto.ProfileFilterDTO;
+import com.company.dto.article.ArticleDTO;
+import com.company.entity.ArticleEntity;
 import com.company.entity.AttachEntity;
 import com.company.entity.ProfileEntity;
 import com.company.enums.ProfileRole;
 import com.company.enums.ProfileStatus;
 import com.company.exps.*;
 import com.company.repository.ProfileRepository;
+import com.company.repository.custome.CustomeProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -21,6 +26,8 @@ public class ProfileService {
     private ProfileRepository profileRepository;
     @Autowired
     private AttachService attachService;
+    @Autowired
+    private CustomeProfileRepository customeProfileRepository;
 
     public ProfileDTO create(ProfileDTO profileDto) {
 
@@ -201,6 +208,26 @@ public class ProfileService {
         });
 
         return new PageImpl(dtoList,pageable, all.getTotalElements());
+    }
+
+    public List<ProfileDTO> filter(ProfileFilterDTO dto){
+        List<ProfileEntity> filter = customeProfileRepository.filter(dto);
+        List<ProfileDTO> profileDTOList=new LinkedList<>();
+        filter.forEach(article -> {
+            profileDTOList.add(shortDTOInfo(article));
+        });
+        return profileDTOList;
+    }
+
+    public ProfileDTO shortDTOInfo(ProfileEntity profile){
+
+        ProfileDTO dto=new ProfileDTO();
+        dto.setName(profile.getName());
+        dto.setSurName(profile.getSurname());
+        dto.setRole(profile.getRole());
+        dto.setEmail(profile.getName());
+        dto.setStatus(profile.getStatus());
+        return dto;
     }
 }
 

@@ -1,9 +1,6 @@
 package com.company.service;
 
-import com.company.dto.AuthDTO;
-import com.company.dto.ProfileDTO;
-import com.company.dto.RegistrationDTO;
-import com.company.dto.VerificationDTO;
+import com.company.dto.*;
 import com.company.entity.AttachEntity;
 import com.company.entity.ProfileEntity;
 import com.company.entity.SmsEntity;
@@ -85,7 +82,20 @@ public class AuthService {
 //
         mailService.sendRegistrationEmail(entity.getEmail(), entity.getId());
 
-        return "sms was send";
+        return "sms was send\\ "+JwtUtil.encode(entity.getId());
+    }
+
+    public EmailRequestDTO resend(Integer id){
+
+        Optional<ProfileEntity> optional = profileRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new BadRequestException("User not found");
+        }
+        ProfileEntity entity = optional.get();
+
+        return mailService.reSendEmail(entity.getEmail(),entity.getId());
+
+
     }
 
     public String verification(VerificationDTO dto) {

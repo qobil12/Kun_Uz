@@ -1,6 +1,9 @@
 package com.company.controller;
 
+import com.company.dto.ArticleFilterDTO;
 import com.company.dto.ProfileDTO;
+import com.company.dto.ProfileFilterDTO;
+import com.company.dto.article.ArticleDTO;
 import com.company.entity.ProfileEntity;
 import com.company.enums.ProfileRole;
 import com.company.service.ProfileService;
@@ -76,6 +79,13 @@ public class ProfileController {
                                                    HttpServletRequest request){
         HttpHeaderUtil.getId(request , ProfileRole.ADMIN);
         PageImpl response = profileService.paginationProfile(page , size);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<ProfileDTO>> filter(@RequestBody ProfileFilterDTO dto, HttpServletRequest request) {
+        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+        List<ProfileDTO> response = profileService.filter(dto);
         return ResponseEntity.ok().body(response);
     }
 

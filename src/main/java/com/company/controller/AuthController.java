@@ -1,10 +1,8 @@
 package com.company.controller;
 
-import com.company.dto.AuthDTO;
-import com.company.dto.ProfileDTO;
-import com.company.dto.RegistrationDTO;
-import com.company.dto.VerificationDTO;
+import com.company.dto.*;
 import com.company.service.AuthService;
+import com.company.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +31,13 @@ public class AuthController {
     public ResponseEntity<String> login(@RequestBody VerificationDTO dto) {
         String response = authService.verification(dto);
         return ResponseEntity.ok(response);
+    }
+    @GetMapping("/resend/{jwt}")
+    public ResponseEntity<?> login(@PathVariable("jwt")String jwt) {
+        Integer id = JwtUtil.decode(jwt);
+
+        EmailRequestDTO dto= authService.resend(id);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/email/verification/{id}")

@@ -366,9 +366,12 @@ public class ArticleService {
 
 
     public List<ArticleDTO> filter(ArticleFilterDTO dto){
-        customeArticleRepository.filter(dto);
-
-        return null;
+        List<ArticleEntity> filter = customeArticleRepository.filter(dto);
+        List<ArticleDTO> articeList=new LinkedList<>();
+        filter.forEach(article -> {
+            articeList.add(shortDTOInfo(article));
+        });
+        return articeList;
     }
 
     public List<ArticleDTO> getCategoryByPage(String key) {

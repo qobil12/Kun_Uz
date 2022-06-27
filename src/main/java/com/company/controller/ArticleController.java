@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/article")
@@ -26,7 +27,7 @@ public class ArticleController {
 
     //1
     @PostMapping("/adm/create")
-    public ResponseEntity<?> create(@RequestBody ArticleCreateDTO articleDTO,
+    public ResponseEntity<?> create(@Valid @RequestBody  ArticleCreateDTO articleDTO,
                                     HttpServletRequest request) {
 
         Integer profileId = HttpHeaderUtil.getId(request, ProfileRole.MODERATOR);
@@ -172,7 +173,8 @@ public class ArticleController {
     }
 
     @PostMapping("/filter")
-    public ResponseEntity<List<ArticleDTO>> filter(@RequestBody ArticleFilterDTO dto) {
+    public ResponseEntity<List<ArticleDTO>> filter(@RequestBody ArticleFilterDTO dto,HttpServletRequest request) {
+        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         List<ArticleDTO> response = articleService.filter(dto);
         return ResponseEntity.ok().body(response);
     }
